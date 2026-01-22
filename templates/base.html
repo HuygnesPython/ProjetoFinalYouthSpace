@@ -9,6 +9,23 @@
 
 </head>
 <body>
+    <div class="container-fluid">
+        
+        <div class="col-4">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="col-8">
+            <ul>
+                <li>
+                    <a href="{{url_for('index')}}" class="text-decoration-none">Página inicial</a>
+                </li>
+                <li>
+                    <a href="{{url_for('login')}}" class="text-decoration-none">Login</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
     {% block conteudo %}
     {% endblock %}
 
