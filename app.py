@@ -37,7 +37,7 @@ def login():
         cursor.close()
         conexao.close()
         if resultado:
-            if senha == resultado['senha']:
+            if senha == resultado['senha_hash']:
                 print('E-mail e senha corretas')
                 return redirect(url_for('logado'))
             else:
