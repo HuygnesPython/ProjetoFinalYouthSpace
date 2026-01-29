@@ -51,8 +51,39 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     title = 'Dashboard'
-    return render_template('logado.html')
+    return render_template('logado.html', title)
 
+@app.route('/cadastrar_veiculos', methods=['GET', 'POST'])
+def cadastrar_veiculos():
+    if request.method == 'GET':
+        return render_template('cadastrar_veiculos.html')
+    
+    
+    
+    if request.method == 'POST':
+        modelo = request.form.get('modelo')
+        marca = request.form.get('marca')
+        ano = request.form.get('ano')
+        placa = request.form.get('placa')
+        obs = request.form.get('obs')
+        cliente_vinculado = request.form.get('cliente_vinculado')
+        
+        conexao = conectar()
+        cursor = conexao.cursor(dictionary=True)
+        sql = 'SELECT * FROM clientes WHERE nome = %s'
+        cursor.execute(sql, (cliente_vinculado,))
+        resultado = cursor.fetchone()
+        cursor.close()
+        conexao.close()
+        if resultado:
+            conexao = conectar()
+            cursor = conexao.cursor(dictionary=True)
+            sql = 'INSERT INTO OS'
+            cursor.execute(sql)
+        
+            cursor.close()
+            conexao.close()
+        return render_template('cadastrar_veiculos.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
