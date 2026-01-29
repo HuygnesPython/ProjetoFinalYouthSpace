@@ -39,7 +39,7 @@ def login():
         if resultado:
             if senha == resultado['senha_hash']:
                 print('E-mail e senha corretas')
-                return redirect(url_for('logado'))
+                return redirect(url_for('dashboard'))
             else:
                 print('Senha Errada')
                 return render_template('login.html', title=title)
@@ -48,8 +48,9 @@ def login():
             return render_template('login.html', title=title)
        
 
-@app.route('/logado')
-def logado():
+@app.route('/dashboard')
+def dashboard():
+    title = 'Dashboard'
     return render_template('logado.html')
 
 
