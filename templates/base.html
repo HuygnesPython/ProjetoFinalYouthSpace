@@ -9,23 +9,29 @@
 
 </head>
 <body>
-    <div class="flex-column">
+    <div class="flex-column bg-black p-2 mb-3">
         
-        <div class="">
+        <div class="text-white">
             <h1>{{title}}</h1>
         </div>
         <div class="">
             <ul>
-                <li>
-                    <a href="{{url_for('index')}}" class="text-decoration-none text-black">Página inicial</a>
+                <li class="text-white">
+                    <a href="{{url_for('index')}}" class="text-decoration-none text-white">Página inicial</a>
                 </li>
-                <li>
-                    <a href="{{url_for('login')}}" class="text-decoration-none text-black">Login</a>
+                <li class="text-white">
+                    <a href="{{url_for('login')}}" class="text-decoration-none text-white">Login</a>
                 </li>
             </ul>
         </div>
 
     </div>
+
+    <div style="background-color: rgb(200,200,200);" class="container-fluid align-bottom p-1">
+        <h3 class="text-black-50 ms-2">Criado por huygnes</h3>
+    </div>
+
+
     {% block conteudo %}
     {% endblock %}
 

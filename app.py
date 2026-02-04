@@ -8,7 +8,7 @@ def conectar():
     return my.connect(
         host=os.getenv("DB_HOST", "localhost"),
         user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", "neto2303"),
+        password=os.getenv("DB_PASSWORD", "12345"),
         port=os.getenv("DB_PORT", "3306"),
         database=os.getenv("DB_NAME", "PFYS")
     )
