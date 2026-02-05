@@ -1,24 +1,32 @@
 {% extends "base.html" %}
 {% block conteudo %}
 
-<form action="{{url_for('cadastrar_veiculos')}}">
-    <label for="modelo">Modelo:</label>
+<h3>resultado: {{resultado}}</h3>
+
+<form action="{{url_for('cadastrar_veiculos')}}" class="p-3" method="post">
+    <label class='m-3' for="modelo">Modelo:</label>
     <input type="text" name="modelo" id="modelo">
     <br>
-    <label for="marca">Marca:</label>
+    <label class='m-3' for="marca">Marca:</label>
     <input type="text" name="marca" id="marca">
     <br>
-    <label for="ano">Ano:</label>
+    <label class='m-3' for="ano">Ano:</label>
     <input type="text" name="ano" id="ano">
     <br>
-    <label for="placa">Placa:</label>
+    <label class='m-3' for="placa">Placa:</label>
     <input type="text" name="placa" id="placa">
     <br>
-    <label for="obs">Obs.:</label>
+    <label class='m-3' for="obs">Obs.:</label>
     <input type="text" name="obs" id="obs">
     <br>
-    <label for="cliente_vinculado">Cliente:</label>
-    <input type="text" name="cliente_vinculado" id="cliente_vinculado">
+    <label class='m-3' for="cliente_vinculado">Cliente:</label>
+    <select name="" id="">
+        <option value="">~~Selecione um cliente~~</option>
+        {% for nome in resultado %}
+            <option value="{{nome['id']}}">{{nome['nome']}}</option>
+        {% endfor %}
+    </select>
+    <!-- <input type="text" name="cliente_vinculado" id="cliente_vinculado"> -->
     <br>
     <input type="submit" name="" id="", value="Enviar">
 

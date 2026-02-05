@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block conteudo %}
 
-<h3 class="bg-warning">LOGADO</h3>
-<br>
-<a href="{{url_for('cadastrar_veiculos')}}"></a>
-
-
+<main>
+    <button class="rounded-2 p-3 m-2"><a href="{{url_for('cadastrar_veiculos')}}" class="text-decoration-none text-black">Cadastrar veiculos</a></button>         
+    <button class="rounded-2 p-3 m-2"><a href="" class="text-decoration-none text-black">Cadastrar clientes</a></button>      
+    <button class="rounded-2 p-3 m-2"><a href="" class="text-decoration-none text-black"></a></button>         
+</main>
 
 {% endblock %}
