@@ -18,7 +18,7 @@ def conectar():
     return my.connect(
         host=os.getenv("DB_HOST", "localhost"),
         user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", "12345"),
+        password=os.getenv("DB_PASSWORD", "neto2303"),
         port=os.getenv("DB_PORT", "3306"),
         database=os.getenv("DB_NAME", "PFYS")
     )
@@ -121,12 +121,18 @@ def cadastrar_veiculos():
         print(modelo,marca,ano,placa,obs)
         conexao = conectar()
         cursor = conexao.cursor(dictionary=True)
-        sql = 'INSERT INTO veiculos (modelo,marca,ano,placa,obs,cliente) VALUES (%s,%s,%s,%s,%s)'
-        cursor.execute(sql, (modelo,marca,ano,placa,obs,))
+        sql = 'INSERT INTO veiculos (modelo,marca,ano,placa,obs,cliente_vinculado) VALUES (%s,%s,%s,%s,%s,%s)'
+        cursor.execute(sql, (modelo,marca,ano,placa,obs,cliente_vinculado,))
         conexao.commit()
         cursor.close()
         conexao.close()
-        
+
+        conexao = conectar()
+        cursor = conexao.cursor(dictionary=True)
+        sql2 = 'SELECT * FROM clientes'
+        cursor.execute(sql2)
+        resultado = cursor.fetchall()
+        print(resultado)
         return render_template('cadastrar_veiculos.html', title=title, resultado=resultado)
 
 if __name__ == '__main__':
