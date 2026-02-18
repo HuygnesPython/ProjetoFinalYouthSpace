@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="container-fluid bg-dark p-2">
+        <h2 class="text-white">{{title}}</h2>
+
+        <ul>
+            <li class="text-white"><a href="{{url_for('cadastrar_clientes')}}" class="text-decoration-none text-white">Cadastrar Clientes</a></li>
+            <li class="text-white"><a href="{{url_for('cadastrar_veiculo')}}" class="text-decoration-none text-white">Cadastrar Veículos</a></li>
+            <li class="text-white"><a href="{{url_for('cadastrar_os')}}" class="text-decoration-none text-white">Cadastrar OS</a></li>
+            <li class="text-white"><a href="{{url_for('gerenciar_os')}}" class="text-decoration-none text-white">Gerenciar OS</a></li>
+            <li class="text-white"><a href="{{url_for('cadastrar_mecanico')}}" class="text-decoration-none text-white">Cadastrar Mecânicos</a></li>
+            <li class="text-white"><a href="/gerenciar_pecas" class="text-decoration-none text-white">Gerenciar Peças</a></li>
+            
+        </ul>
+    </nav>
+
+<div class="container mt-3">
+    {% block conteudo %}{% endblock %}
+</div>
+
+<a href="/" class="btn btn-primary m-2 p-1 ps-5 pe-5">Voltar</a>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</html>

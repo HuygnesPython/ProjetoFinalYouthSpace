@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<h2>Gerenciar Ordens de Serviço</h2>
+
+<hr>
+
+<a href="{{url_for('cadastrar_os')}}" class="btn btn-success">Nova Ordem de Serviço</a>
+
+<br><br>
+
+<table border="1" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Veículo</th>
+        <th>Mecânico</th>
+        <th>Data Abertura</th>
+        <th>Status</th>
+        <th>Valor Total</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for os in ordens %}
+    <tr>
+        <td>{{os['id']}}</td>
+        <td>{{os['cliente_id']}}</td>
+        <td>{{os['veiculo_id']}}</td>
+        <td>{{os['mecanico_id']}}</td>
+        <td>{{os['data']}}</td>
+        <td>{{os['status']}}</td>
+        <td>R$ {{os['valor_total']}}</td>
+        <td>
+            <a href="/editar_os/{{ os.id }}">Editar</a> |
+            <a href="/itens_os/{{ os.id }}">Itens</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<hr>
+
+
+{% endblock %}

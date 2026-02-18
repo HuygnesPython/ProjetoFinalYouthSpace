@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<h2>Abertura de Ordem de Serviço</h2>
+
+<hr>
+
+<form action="{{url_for('cadastrar_os')}}" method="POST">
+
+    <label>Cliente:</label><br>
+    <select name="cliente_id" class="form-control" required>
+        <option value="">~~Selecione um Cliente~~</option>
+        {% for i in cliente %}
+            <option value="{{i['id']}}">{{i['nome']}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label>Veículo:</label><br>
+    <select name="veiculo_id" class="form-control" required>
+        <option value="">~~Selecione um Veículo~~</option>
+        {% for i in veiculo %}
+            <option value="{{i['id']}}"> {{i['marca']}}-{{i['modelo']}} ({{i['placa']}}) </option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label>Mecânico Responsável:</label><br>
+    <select name="mecanico_id" class="form-control">
+        <option value="">~~Selecione um Mecânico~~</option>
+        {% for i in mecanico %}
+            <option value="{{i['id']}}">{{i['nome']}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label>Data Prevista de Entrega:</label><br>
+    <input type="datetime-local" name="data_prevista_entrega" class="form-control">
+    <br><br>
+
+    <label>Status:</label><br>
+    <select name="status" class="form-control">
+        <option value="ABERTA">ABERTA</option>
+        <option value="EM_ANDAMENTO">EM ANDAMENTO</option>
+        <option value="AGUARDANDO_PEÇAS">AGUARDANDO PEÇAS</option>
+        <option value="CONCLUÍDA">CONCLUÍDA</option>
+        <option value="CANCELADA">CANCELADA</option>
+    </select>
+    <br><br>
+
+    <label>Problema Relatado:</label><br>
+    <textarea name="problema_relatado" class="form-control" required></textarea>
+    <br><br>
+
+    <label>Diagnóstico:</label><br>
+    <textarea name="diagnostico" class="form-control"></textarea>
+    <br><br>
+
+    <label>Observações:</label><br>
+    <textarea name="observacoes" class="form-control"></textarea>
+    <br><br>
+
+    <!-- valor_total começa como 0 -->
+    <label for="valor_total">Valor total:</label>
+    <input type="number" name="valor_total" id="valor_total" value="0" class="form-control">
+
+    <button type="submit" class="form-control">Abrir OS</button>
+
+</form>
+
+<hr>
+
+
+{% endblock %}
