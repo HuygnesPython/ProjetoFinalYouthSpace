@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<h2>Gerenciar Peças</h2>
+
+<hr>
+
+<h4>Peças Cadastradas</h4>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Estoque</th>
+            <th>Custo</th>
+            <th>Preço Venda</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% if pecas %}
+            {% for p in pecas %}
+                <tr class="text-black">
+                    <td>{{ p['id'] }}</td>
+                    <td>{{ p['nome'] }}</td>
+                    <td>{{ p['codigo'] }}</td>
+                    <td>{{ p['quantidade_estoque'] }}</td>
+                    <td>R$ {{ p['custo'] }}</td>
+                    <td>R$ {{ p['preco_venda'] }}</td>
+                    <td>
+                        {% if p.ativo %}
+                            Ativo
+                        {% else %}
+                            Inativo
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Nenhuma peça cadastrada.</td>
+            </tr>
+        {% endif %}
+
+    </tbody>
+</table>
+
+{% endblock %}

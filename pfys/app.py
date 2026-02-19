@@ -133,9 +133,33 @@ def cadastrar_veiculo():
 
 @app.route("/gerenciar_pecas", methods=["GET", "POST"])
 def gerenciar_pecas():
-    title = ""
+    title = "Gerenciar Pecas"
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    sql = "SELECT * FROM pecas"
+
+    cursor.execute(sql)
+    pecas = cursor.fetchall()
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+    return render_template("gerenciar_pecas.html", pecas=pecas, title=title)
+
+
+
+
+
+
+
+
+@app.route("/cadastrar_pecas", methods=["GET", "POST"])
+def cadastrar_pecas():
+    title = "Cadastrar Pecas"
     if request.method == "GET":
-        return render_template("gerenciar_pecas.html")
+        return render_template("cadastrar_pecas.html")
 
     nome = request.form.get("nome")
     codigo = request.form.get("codigo")
@@ -147,11 +171,7 @@ def gerenciar_pecas():
     conexao = conectar_banco()
     cursor = conexao.cursor()
 
-    sql = """
-    INSERT INTO pecas
-    (nome, codigo, quantidade_estoque, custo, preco_venda, observacoes)
-    VALUES (%s, %s, %s, %s, %s, %s)
-    """
+    sql = "INSERT INTO pecas (nome, codigo, quantidade_estoque, custo, preco_venda, observacoes) VALUES (%s, %s, %s, %s, %s, %s)"
 
     cursor.execute(sql, (nome, codigo, quantidade_estoque, custo, preco_venda, observacoes))
     conexao.commit()
@@ -159,14 +179,7 @@ def gerenciar_pecas():
     cursor.close()
     conexao.close()
 
-    return render_template("gerenciar_pecas.html", title=title)
-
-
-
-
-
-
-
+    return render_template("cadastrar_pecas.html", title=title)
 
 @app.route("/cadastrar_os", methods=["GET", "POST"])
 def cadastrar_os():
@@ -195,9 +208,6 @@ def cadastrar_os():
         mecanico = cursor.fetchall()
         cursor.close()
         conexao.close()
-
-        
-
         return render_template("cadastrar_os.html", cliente=cliente, veiculo=veiculo, mecanico=mecanico, title=title)
     
     if request.method == "POST":
@@ -251,11 +261,6 @@ def cadastrar_mecanico():
 
     return render_template("cadastrar_mecanico.html", title=title)
 
-
-
-
-
-
 @app.route("/gerenciar_os", methods=["GET"])
 def gerenciar_os():
     title = "Gerenciar OS"
@@ -276,14 +281,6 @@ def gerenciar_os():
         cursor.close()
         conexao.close()
         print(data)
-        # conexao = conectar_banco()
-        # cursor = conexao.cursor(dictionary=True)
-        # sql5 = 'SELECT data_prevista_entrega FROM ordem_servicos'
-        # cursor.execute(sql5)
-        # data_entrega = cursor.fetchone()
-        # cursor.close()
-        # conexao.close()
-
         return render_template("gerenciar_os.html", title=title, ordens=ordens, data=data)
     
 

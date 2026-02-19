@@ -10,7 +10,7 @@
 <br><br>
 
 <table border="1" width="100%">
-    <tr>
+    <tr class="bg-black text-white">
         <th>ID</th>
         <th>Cliente</th>
         <th>Veículo</th>
@@ -20,22 +20,27 @@
         <th>Valor Total</th>
         <th>Ações</th>
     </tr>
-
-    {% for os in ordens %}
-    <tr>
-        <td>{{os['id']}}</td>
-        <td>{{os['cliente_id']}}</td>
-        <td>{{os['veiculo_id']}}</td>
-        <td>{{os['mecanico_id']}}</td>
-        <td>{{os['data']}}</td>
-        <td>{{os['status']}}</td>
-        <td>R$ {{os['valor_total']}}</td>
-        <td>
-            <a href="/editar_os/{{ os.id }}">Editar</a> |
-            <a href="/itens_os/{{ os.id }}">Itens</a>
-        </td>
-    </tr>
-    {% endfor %}
+    {% if ordens %}
+        {% for os in ordens %}
+        <tr>
+            <td>{{os['id']}}</td>
+            <td>{{os['cliente_id']}}</td>
+            <td>{{os['veiculo_id']}}</td>
+            <td>{{os['mecanico_id']}}</td>
+            <td>{{os['data']}}</td>
+            <td>{{os['status']}}</td>
+            <td>R$ {{os['valor_total']}}</td>
+            <td>
+                <a href="/editar_os/{{ os.id }}">Editar</a> |
+                <a href="/itens_os/{{ os.id }}">Itens</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center p-2">Nenhum OS cadastrada.</td>
+        </tr>
+    {% endif %}
 
 </table>
 

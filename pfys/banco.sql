@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS veiculos (
     modelo VARCHAR(99),
     placa VARCHAR(99),
     ano VARCHAR(99),
-    obs VARCHAR(99),
     observacoes VARCHAR(250),
     ativo BOOL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
@@ -45,7 +44,7 @@ CREATE TABLE IF NOT EXISTS mecanicos (
     ativo BOOL DEFAULT 1
 );
 
-CREATE TABLE IF NOT EXISTS pecas (
+CREATE TABLE IF NOT EXISTS pecas(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     codigo VARCHAR(100),
@@ -71,6 +70,7 @@ CREATE TABLE IF NOT EXISTS ordem_servicos (
     diagnostico VARCHAR(250),
     observacoes VARCHAR(250),
     valor_total FLOAT,
+    
     FOREIGN KEY (cliente_id) REFERENCES clientes(id),
     FOREIGN KEY (veiculo_id) REFERENCES veiculos(id),
     FOREIGN KEY (usuario_abertura_id) REFERENCES usuarios(id),
@@ -89,3 +89,12 @@ CREATE TABLE IF NOT EXISTS os_itens (
     FOREIGN KEY (os_id) REFERENCES ordem_servicos(id),
     FOREIGN KEY (peca_id) REFERENCES pecas(id)
 );
+
+
+SELECT * FROM clientes;
+SELECT * FROM os_itens;
+SELECT * FROM veiculos;
+SELECT * FROM ordem_servicos;
+SELECT * FROM usuarios;
+SELECT * FROM mecanicos;
+SELECT * FROM pecas;
